@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Sample Frontend</title>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<html>
+<head>
+  <title>Lambda Test</title>
+</head>
+<body>
+  <h2>Response from Lambda:</h2>
+  <div id="lambda-output">Loading...</div>
+
+  <script>
+    fetch('https://p9gv8wxkve.execute-api.us-east-1.amazonaws.com/prod/api')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('lambda-output').innerText = data.message;
+      })
+      .catch(err => {
+        document.getElementById('lambda-output').innerText = 'Error: ' + err;
+      });
+  </script>
+</body>
 </html>
